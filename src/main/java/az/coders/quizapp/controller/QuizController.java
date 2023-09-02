@@ -1,4 +1,5 @@
 package az.coders.quizapp.controller;
+import az.coders.quizapp.dto.QuestionDTO;
 import az.coders.quizapp.model.Quiz;
 import az.coders.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class QuizController {
     public ResponseEntity<String> deleteById(@PathVariable Long id){
       return quizService.deleteById(id);
     }
-}
+
+    @GetMapping("getQuestions")
+    public ResponseEntity<List<QuestionDTO>> getQuestionsForUser(@RequestParam Integer numQ,
+                                                                 @RequestParam String category){
+        return quizService.getQuestionDTOs(numQ,category);
+    }}
 
 
