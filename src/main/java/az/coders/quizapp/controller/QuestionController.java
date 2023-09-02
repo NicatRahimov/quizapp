@@ -3,14 +3,11 @@ package az.coders.quizapp.controller;
 import az.coders.quizapp.model.Question;
 import az.coders.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.OutputKeys;
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("question")
@@ -18,7 +15,7 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
     @GetMapping("/allQuestion")
-    public ResponseEntity<List<Question>> getAllQuestions(){
+    public ResponseEntity<List<Question>> getAllQuestion(){
         return questionService.getAllQuestions();
     }
 @GetMapping("/category/{category}")
