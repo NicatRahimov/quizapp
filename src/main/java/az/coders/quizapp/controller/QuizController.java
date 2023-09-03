@@ -1,6 +1,8 @@
 package az.coders.quizapp.controller;
 import az.coders.quizapp.dto.QuestionDTO;
+
 import az.coders.quizapp.model.Quiz;
+import az.coders.quizapp.model.Response;
 import az.coders.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,9 @@ public class QuizController {
     public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam Integer numQ, @RequestParam String title) {
         return quizService.createQuizByCategory(category, numQ, title);
     }
-@GetMapping("getQuiz/{id}")
-    public ResponseEntity<Quiz> getQuizById(@PathVariable Long id){
-       return quizService.getQuizById(id);
+@GetMapping("getQuizAdmin/{id}")
+    public ResponseEntity<Quiz> getQuizByIdForAdmin(@PathVariable Long id){
+        return quizService.getQuizById(id);
     }
     @GetMapping("/getAllQuiz")
     public ResponseEntity<List<Quiz>> getQuiz() {
@@ -29,10 +31,21 @@ public class QuizController {
       return quizService.deleteById(id);
     }
 
-    @GetMapping("getQuestions")
-    public ResponseEntity<List<QuestionDTO>> getQuestionsForUser(@RequestParam Integer numQ,
+    @GetMapping("getQuestionsRandomly")
+    public ResponseEntity<List<QuestionDTO>> getQuestionsByCategory(@RequestParam Integer numQ,
                                                                  @RequestParam String category){
         return quizService.getQuestionDTOs(numQ,category);
-    }}
+    }
+    @GetMapping("getQuizQuestions/{id}")
+    public ResponseEntity<List<QuestionDTO>> getQuestionsByCategory(@PathVariable Integer id){
+        return quizService.getQuizQuestions(id);
+    }
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> getQuizScore(@PathVariable Integer id,
+                                                @RequestBody List<Response> responses){
+       return quizService.calculateScore(id,responses);
+
+    }
+}
 
 

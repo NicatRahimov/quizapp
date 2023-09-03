@@ -10,13 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface MyMapper {
 
     MyMapper INSTANCE = Mappers.getMapper(MyMapper.class);
-    @Mapping(source = "questionTitle",target = "questionTitle")
-    @Mapping(source = "firstOption",target = "firstOption")
-    @Mapping(source = "secondOption",target = "secondOption")
-    @Mapping(source = "thirdOption",target = "thirdOption")
-    @Mapping(source = "fourthOption",target = "fourthOption")
-    @Mapping(source = "id",target = "id")
-    QuestionDTO entityToDto(Question entity);
 
     @Mapping(source = "questionTitle",target = "questionTitle")
     @Mapping(source = "firstOption",target = "firstOption")
@@ -24,5 +17,14 @@ public interface MyMapper {
     @Mapping(source = "thirdOption",target = "thirdOption")
     @Mapping(source = "fourthOption",target = "fourthOption")
     @Mapping(source = "id",target = "id")
-    Question dtoToEntity(QuestionDTO dto);
+    QuestionDTO QueToQueDto(Question entity);
+
+    @Mapping(source = "questionTitle",target = "questionTitle")
+    @Mapping(source = "firstOption",target = "firstOption")
+    @Mapping(source = "secondOption",target = "secondOption")
+    @Mapping(source = "thirdOption",target = "thirdOption")
+    @Mapping(source = "fourthOption",target = "fourthOption")
+    @Mapping(source = "id",target = "id")
+    Question QueDtoToQue(QuestionDTO dto);
+
 }

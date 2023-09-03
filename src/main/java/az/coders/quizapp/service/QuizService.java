@@ -6,6 +6,7 @@ import az.coders.quizapp.dto.QuestionDTO;
 import az.coders.quizapp.exception.QuizNotFound;
 import az.coders.quizapp.model.Question;
 import az.coders.quizapp.model.Quiz;
+import az.coders.quizapp.model.Response;
 import az.coders.quizapp.util.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,8 +56,36 @@ public class QuizService {
         List<Question> randomlyByCategory = questionDAO.findRandomlyByCategory(numQ, category);
         for (Question q :
                 randomlyByCategory) {
-            questionDTOList.add(myMapper.entityToDto(q));
+            questionDTOList.add(myMapper.QueToQueDto(q));
         }
         return new ResponseEntity<>(questionDTOList,HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<QuestionDTO>> getQuizQuestions(Integer id) {
+        MyMapper myMapper = MyMapper.INSTANCE;
+        List<QuestionDTO>questionDTOS = new ArrayList<>();
+        Quiz quiz= quizDAO.findById(Long.valueOf(id)).get();
+        List<Question>questions = List.copyOf(quiz.getQuestions());
+        for (Question q :
+                questions) {
+           questionDTOS.add(myMapper.QueToQueDto(q));
+        }
+        return new ResponseEntity<>(questionDTOS,HttpStatus.OK);
+    }
+
+    public ResponseEntity<Integer> calculateScore(Integer id, List<Response> responses) {
+        Integer score=0;
+        Quiz quiz = quizDAO.findById(Long.valueOf(id)).get();
+        List<Question>questions = quiz.getQuestions();
+        for (Question question : questions) {
+            for (Response respons : responses) {
+                if (question.getId().equals(respons.getId())) {
+                    if (question.getRightAnswer().equals(respons.getResponse())) {
+                        score++;
+                    }
+                }
+            }
+        }
+return new ResponseEntity<>(score,HttpStatus.OK);
     }
 }
