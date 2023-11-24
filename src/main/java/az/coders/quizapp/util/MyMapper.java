@@ -11,20 +11,20 @@ public interface MyMapper {
 
     MyMapper INSTANCE = Mappers.getMapper(MyMapper.class);
 
-    @Mapping(source = "questionTitle",target = "questionTitle")
-    @Mapping(source = "firstOption",target = "firstOption")
-    @Mapping(source = "secondOption",target = "secondOption")
-    @Mapping(source = "thirdOption",target = "thirdOption")
-    @Mapping(source = "fourthOption",target = "fourthOption")
-    @Mapping(source = "id",target = "id")
-    QuestionDTO QueToQueDto(Question entity);
+//    @Mapping(source = "questionTitle",target = "questionTitle")
+//    @Mapping(source = "firstOption",target = "firstOption")
+//    @Mapping(source = "secondOption",target = "secondOption")
+//    @Mapping(source = "thirdOption",target = "thirdOption")
+//    @Mapping(source = "fourthOption",target = "fourthOption")
+//    @Mapping(source = "id",target = "id")
+//    QuestionDTO QueToQueDto(Question entity);
 
-    @Mapping(source = "questionTitle",target = "questionTitle")
-    @Mapping(source = "firstOption",target = "firstOption")
-    @Mapping(source = "secondOption",target = "secondOption")
-    @Mapping(source = "thirdOption",target = "thirdOption")
-    @Mapping(source = "fourthOption",target = "fourthOption")
-    @Mapping(source = "id",target = "id")
-    Question QueDtoToQue(QuestionDTO dto);
+//    @Mapping(source = "questionTitle",target = "questionTitle")
+//    @Mapping(source = "firstOption",target = "firstOption")
+//    @Mapping(source = "secondOption",target = "secondOption")
+//    @Mapping(source = "thirdOption",target = "thirdOption")
+//    @Mapping(source = "fourthOption",target = "fourthOption")
+//    @Mapping(source = "id",target = "id")
+//    Question QueDtoToQue(QuestionDTO dto);
 
 }

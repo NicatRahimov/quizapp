@@ -1,0 +1,6 @@
+@Api - Rest Controller dokümantasyonu.
+@ApiModel - Rest API Model dokümantasyonu
+@ApiModelProperty - Model property dokümantasyonu
+@ApiOperation - Rest method dokümantasyonu
+@ApiParam - Method parametresi dokümantasyonu
+@ApiResponse - Method Response nesnesi icin dokümantasyonu

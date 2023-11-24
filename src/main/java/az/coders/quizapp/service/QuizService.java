@@ -56,7 +56,15 @@ public class QuizService {
         List<Question> randomlyByCategory = questionDAO.findRandomlyByCategory(numQ, category);
         for (Question q :
                 randomlyByCategory) {
-            questionDTOList.add(myMapper.QueToQueDto(q));
+            QuestionDTO queDto = QuestionDTO.builder().
+                    questionTitle(q.getQuestionTitle()).
+                    firstOption(q.getFirstOption()).
+                    secondOption(q.getSecondOption()).
+                    thirdOption(q.getThirdOption()).
+                    fourthOption(q.getFourthOption())
+                    .id(q.getId())
+                    .build();
+            questionDTOList.add(queDto);
         }
         return new ResponseEntity<>(questionDTOList,HttpStatus.OK);
     }
@@ -68,7 +76,17 @@ public class QuizService {
         List<Question>questions = List.copyOf(quiz.getQuestions());
         for (Question q :
                 questions) {
-           questionDTOS.add(myMapper.QueToQueDto(q));
+
+            QuestionDTO queDto = QuestionDTO.builder().
+                    questionTitle(q.getQuestionTitle()).
+                    firstOption(q.getFirstOption()).
+                    secondOption(q.getSecondOption()).
+                    thirdOption(q.getThirdOption()).
+                    fourthOption(q.getFourthOption())
+                    .id(q.getId())
+                    .build();
+
+           questionDTOS.add(queDto);
         }
         return new ResponseEntity<>(questionDTOS,HttpStatus.OK);
     }
